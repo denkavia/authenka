@@ -2,6 +2,8 @@
 
 namespace Denkavia\Authenka\Providers;
 
+use Denkavia\Authenka\Authenka;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
 class AuthenkaServiceProvider extends ServiceProvider
@@ -12,6 +14,12 @@ class AuthenkaServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/authenka.php', 'authenka');
+
+        $this->app->alias(Authenka::class, 'authenka');
+
+        $this->app->singleton('authenka', function (Container $app) {
+            return new Authenka($app);
+        });
     }
 
     /**
