@@ -11,7 +11,7 @@ class AuthenkaServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../../config/authenka.php', 'authenka');
     }
 
     /**
@@ -19,6 +19,10 @@ class AuthenkaServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../../config/authenka.php' => config_path('authenka.php'),
+            ]);
+        }
     }
 }
