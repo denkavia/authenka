@@ -2,13 +2,13 @@
 
 namespace Denkavia\Authenka\Facades;
 
+use Denkavia\Authenka\Authenka as BaseClass;
 use Denkavia\Authenka\Contracts\DriverContract;
-use Denkavia\Authenka\Manager;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @see DriverContract
- * @see Manager
+ * @see BaseClass
  */
 class Authenka extends Facade
 {
